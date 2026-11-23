@@ -3,7 +3,7 @@ import asyncio
 from config import bot, settings
 from app.logic.base import BaseLogic as logic
 from app.logging.base import global_botlog as botlog
-from app.redis.base import redis_client, redis_ping
+from app.redis.store import store
 from app.ds.cogs import global_setup
 
 @bot.event
@@ -14,15 +14,15 @@ async def on_ready():
 async def main():
     try:
         botlog.logger.info('Бот запускается')
-        await logic.test_api_connect(True)
-        await redis_ping(True)
+        await logic.test_core_connect(True)
+        await store.ping()
         global_setup(bot)
         settings.info['main'] = bot
         await bot.start(settings.token)
-    except:
-        pass
+    except Exception as e:
+        botlog.logger.critical(e)
     finally:
-        await redis_client.aclose()
+        await store.close()
         botlog.stop()
 
 if __name__ == "__main__": 

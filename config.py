@@ -8,7 +8,7 @@ from discord import Bot
 load_dotenv(Path(__file__).parent / '.env')
 
 class Settings:
-    api_url = os.getenv('api_url')
+    core_url = os.getenv('core_url')
 
     bot_token = os.getenv('bot_token')
     dev_bot_token = os.getenv('dev_bot_token', bot_token)
@@ -16,6 +16,9 @@ class Settings:
 
     admins = [int(x) for x in os.getenv('admins').split(',')]
     owner = int(os.getenv('owner'))
+
+    _use_proxy = os.getenv('use_proxy', 'f')
+    proxy_url = os.getenv('proxy_url')
 
     _use_redis = os.getenv('use_redis', 'f')
     redis_url = os.getenv('redis_url')
@@ -45,6 +48,10 @@ class Settings:
         return self.dev_bot_token if self.is_dev else self.bot_token
 
     @property
+    def use_proxy(self):
+        return True if self._use_proxy in ['t', 'true', '1'] else False
+
+    @property
     def use_redis(self):
         return True if self._use_redis in ['t', 'true', '1'] else False
 
@@ -61,5 +68,6 @@ intents.message_content = True  # Критически важно!
 bot = commands.Bot(
     command_prefix=['!'], 
     intents=intents, 
-    default_member_permissions=None
+    default_member_permissions=None,
+    proxy=settings.proxy_url if settings.use_proxy else None
     )

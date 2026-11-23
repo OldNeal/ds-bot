@@ -1,6 +1,6 @@
 from app.ds.buttons.base import BaseIKB
 from app.ds.view.wiki import AllPathsView, SearchPathView, AllGasView, SearchGaView
-from app.validate.api import AnswerGAInfo, AnswerPathInfo
+from app.validate.core import AnswerGAInfo, AnswerPathInfo
 
 class WikiIKB(BaseIKB):
     def all_paths(self, groups: list[str], paths: list[AnswerPathInfo], group: str | None = None, path_name: str | None = None):

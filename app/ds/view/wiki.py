@@ -2,7 +2,7 @@ from discord import Interaction, SelectOption
 from discord.ui import Select, Button
 
 from app.ds.view.base import BaseView
-from app.validate.api import AnswerGAInfo, AnswerPathInfo
+from app.validate.core import AnswerGAInfo, AnswerPathInfo
 
 class WikiView(BaseView):
     def create_path_select(self, paths: list[AnswerPathInfo], path_name: str | None = None):

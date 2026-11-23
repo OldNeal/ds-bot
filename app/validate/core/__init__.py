@@ -1,5 +1,5 @@
-from app.api.schemas import *
-from app.api.schemas import AnswerPathFullInfo as AnswerPathFullInfoPath
+from app.core.schemas import *
+from app.core.schemas import AnswerPathFullInfo as AnswerPathFullInfoPath
 
 class AnswerPathFullInfo(AnswerPathFullInfoPath):
     @property

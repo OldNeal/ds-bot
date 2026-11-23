@@ -1,6 +1,6 @@
 from app.logic.base import BaseLogic
 from app.logic.utils import class_decor
-from app.api.client import get_info, user_delete, user_list, user_search
+from app.core.client import get_info, user_delete, user_list, user_search
 
 @class_decor
 class MainLogic(BaseLogic):

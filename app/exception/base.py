@@ -43,7 +43,7 @@ class RedisError(BotError):
     msg = 'Redis не работает'
     emodzi = '❌'
 
-class ApiError(BotError):
+class CoreError(BotError):
     msg = None
 
     def __init__(self, *args, level = 'warning', is_error = True, **kwargs):
@@ -58,8 +58,8 @@ class ApiError(BotError):
     def code(self):
         return self.kwargs.get('status_code')
 
-class ApiTimeoutError(BotError):
-    msg = 'API не работает'
+class CoreTimeoutError(BotError):
+    msg = 'CORE не работает'
     emodzi = '❌'
 
 class JSONEnterError(BotError):

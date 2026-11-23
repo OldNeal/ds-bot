@@ -1,7 +1,7 @@
 from discord import Embed, EmbedField
 
 from app.ds.text.base import BaseText
-from app.validate.api import AnswerAllPathInfo, AnswerGAFullInfo, AnswerPathFullInfo
+from app.validate.core import AnswerAllPathInfo, AnswerGAFullInfo, AnswerPathFullInfo
 
 class WikiText(BaseText):
     @classmethod
